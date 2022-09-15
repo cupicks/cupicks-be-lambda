@@ -1,0 +1,19 @@
+{
+  "name": "profile-resizing",
+  "version": "1.0.0",
+  "description": "comment resizing lambda function",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lambda",
+    "function"
+  ],
+  "author": "axisotherwise",
+  "license": "MIT",
+  "dependencies": {
+    "aws-sdk": "2.6",
+    "sharp": "^0.31.0"
+  }
+}
