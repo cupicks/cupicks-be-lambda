@@ -1,15 +1,18 @@
 {
   "name": "profile-resizing",
   "version": "1.0.0",
-  "description": "프로필 이미지 리사이징 람다 함수",
+  "description": "comment resizing lambda function",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "lambda",
+    "function"
+  ],
   "author": "axisotherwise",
   "license": "MIT",
   "dependencies": {
-    "@types/sharp": "^0.30.5",
     "aws-sdk": "^2.1216.0",
     "sharp": "^0.31.0"
   }
