@@ -20,5 +20,15 @@ jobs:
       - name: zip
         run: zip -r aws-lambda.zip ./comment-resizing
 
-      - name: upload s3
-        run: aws s3 cp ./aws-lambda.zip s3://cupick-images
+      - name: awscli
+        run: curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+      - name: unzip
+        run: unzip awscliv2.zip
+
+      - name: aws
+        run: ./aws/install
+
+      - name: aws configure
+        run: aws configure
+
