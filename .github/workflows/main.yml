@@ -17,14 +17,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: cd
-        run: cd comment-resizing
-
-      - name: module install
-        run: npm i
-
       - name: zip
         run: zip -r aws-lambda.zip ./index.js
+
+      - name: unzip 
+        run: unzip aws-lambda.zip
+
+      - name: rezip
+        run: zip -r re-aws-lambda.zip ./index.js 
 
       - name: aws configure
         uses: aws-actions/configure-aws-credentials@v1
