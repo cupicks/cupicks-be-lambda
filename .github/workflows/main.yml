@@ -17,6 +17,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: cd
+        run: cd comment-resizing
+
       - name: module install
         run: npm i
 
