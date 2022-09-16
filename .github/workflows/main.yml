@@ -21,7 +21,7 @@ jobs:
         run: npm i
 
       - name: zip
-        run: zip -r aws-lambda.zip ./index.js ./package.json ./package-lock.json
+        run: zip -r aws-lambda.zip ./index.js ./package.json ./package-lock.json ./node_modules
 
       - name: aws configure
         uses: aws-actions/configure-aws-credentials@v1
@@ -29,3 +29,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: aws upload
+        run: aws s3 cp "aws-lambda.zip" s3://cupick-images 
