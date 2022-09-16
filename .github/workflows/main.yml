@@ -2,9 +2,7 @@ name: Lambda CI
 
 on:
   push:
-    branches: ['main']
-
-#  workflow_dispatch:
+    branches: ['test']
 
 jobs:
   build:
@@ -17,11 +15,23 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: zip
-        run: zip -r aws-lambda.zip 1.txt 2.txt
+      - name: aws-lambda zip
+        run: zip -r aws-lambda.zip ./profile-resizing
 
-      - name: unzip
+      - name: exist-folder-remove
+        run: rm -rf profile-resizing
+
+      - name: aws-lambda unzip
         run: unzip aws-lambda.zip
+
+      - name: exist-folder-remove
+        run: rm -rf profile-resizing
+        
+      - name: set-up
+        run: npm i
+
+      - name: aws-lambda zip
+        run: zip -r aws-lambda.zip ./*
 
       - name: aws configure
         uses: aws-actions/configure-aws-credentials@v1
@@ -29,3 +39,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: aws-upload
+        run: aws s3 cp "aws-lambda.zip" s3://${{ secrets.AWS_BUCKET }}

@@ -23,11 +23,11 @@ exports.handler = async (event, context, done) => {
 
         await s3.putObject({
         Bucket,
-        Key: `profile-resized/${filename}`,
+        Key: `lee-resized/${filename}`,
         Body: resizedImage,
         }).promise();
 
-        return done(null, `profile-resized/${filename}`);
+        return done(null, `lee-resized/${filename}`);
     } catch (error) {
         console.error(error);
         return done(error);

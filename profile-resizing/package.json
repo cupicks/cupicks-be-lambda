@@ -1,11 +1,14 @@
 {
-  "name": "profile-resizing",
+  "name": "comment-resizing",
   "version": "1.0.0",
-  "description": "profile image resizing",
+  "description": "lambda resizing function",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "lambda"
+  ],
   "author": "axisotherwise",
   "license": "MIT",
   "dependencies": {
