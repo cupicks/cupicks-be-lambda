@@ -24,7 +24,7 @@ jobs:
         run: npm i
 
       - name: zip
-        run: zip -r aws-lambda.zip ./index.js ./package.json ./package-lock.json ./node_modules
+        run: zip -r aws-lambda.zip ./index.js
 
       - name: aws configure
         uses: aws-actions/configure-aws-credentials@v1
