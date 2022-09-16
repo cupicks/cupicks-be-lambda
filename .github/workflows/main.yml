@@ -4,8 +4,6 @@ on:
   push:
     branches: ['test']
 
-#  workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -17,22 +15,22 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: zip
+      - name: aws-lambda zip
         run: zip -r aws-lambda.zip ./comment-resizing
 
-      - name: remove folder
+      - name: exist-folder0remove
         run: rm -rf comment-resizing
 
-      - name: unzip 
+      - name: aws-lambda unzip
         run: unzip aws-lambda.zip
 
-      - name: remove folder
+      - name: exist-folder-remove
         run: rm -rf comment-resizing
         
-      - name: npm i
+      - name: set-up
         run: npm i
 
-      - name: aws upload zip
+      - name: aws-lambda zip
         run: zip -r aws-lambda.zip ./*
 
       - name: aws configure
@@ -42,5 +40,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: aws upload
+      - name: aws-upload
         run: aws s3 cp "aws-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
