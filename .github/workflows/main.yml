@@ -28,10 +28,7 @@ jobs:
 
       - name: remove folder
         run: rm -rf comment-resizing
-
-      - name: cd
-        run: cd comment-resizing
-
+        
       - name: npm i
         run: npm i
 
