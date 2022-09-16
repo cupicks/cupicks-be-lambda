@@ -1,0 +1,21 @@
+{
+  "name": "profile-resizing",
+  "version": "1.0.0",
+  "description": "profile image resizing",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lambda"
+  ],
+  "author": "axisotherwise",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/types": "^3.171.0",
+    "@types/sharp": "^0.30.5",
+    "aws-lambda": "^1.0.7",
+    "aws-sdk": "^2.1217.0",
+    "sharp": "^0.31.0"
+  }
+}
