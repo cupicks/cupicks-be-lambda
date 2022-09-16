@@ -17,14 +17,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: aws-lambda zip
-        run: zip -r aws-lambda.zip ./index.js ./package.json ./package-lock.json
+      - name: zip
+        run: zip -r aws-lambda.zip ../../profile-resizing/index.js ../../profile-resizing/package.json ../../profile-resizing/package-lock.json
 
       - name: unzip
         run: unzip aws-lambda.zip
 
-      - name: npm i
-        run: npm i
-
-      - name: zip
-        run: ./node_modules ./index.js ./package.json ./package-lock.json
+      - name: aws configure
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
