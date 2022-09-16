@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: zip
-        run: zip -r aws-lambda.zip ./profile-resizing ./profile-resizing/index.js ./profile-resizing/package.json ./profile-resizing/package-lock.json
+        run: zip -r aws-lambda.zip ./1.txt ./2.txt
 
       - name: unzip
         run: unzip aws-lambda.zip
