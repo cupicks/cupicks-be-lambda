@@ -25,10 +25,7 @@ jobs:
 
       - name: unzip
         run: unzip awscliv2.zip
-
-      - name: aws
-        run: ./aws/install
-
+        
       - name: aws configure
         run: aws configure
 
