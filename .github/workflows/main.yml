@@ -21,4 +21,4 @@ jobs:
         run: zip -r aws-lambda.zip ./comment-resizing
 
       - name: upload s3
-        run: aws s3 cp --region ap-northeast-2 ./aws-lambda.zip s3://cupick-images
+        run: aws s3 cp ./aws-lambda.zip s3://cupick-images
