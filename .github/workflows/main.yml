@@ -33,3 +33,6 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           default-region-name: ${{ secrets.AWS_REGION }}
           default-output-format: ${{ secrets.AWS_FORMAT }}
+
+      - name: uploa
+        run: aws s3 cp "aws-lambda.zip" s3://cupick-images
