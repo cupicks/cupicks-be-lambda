@@ -31,7 +31,7 @@ jobs:
         run: unzip aws-lambda.zip
 
       - name: cd
-        run: aws-lambda
+        run: cd ..
 
       - name: ls
         run: ls
