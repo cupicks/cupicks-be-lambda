@@ -21,7 +21,11 @@ jobs:
       - name: cd
         run: cd profile-resizing
       
-      - name: ls
+      - name: set up
+        run: npm i
+        working-directory: profile-resizing
+
+      - name: ls 2
         run: ls
       # - name: set-up
       #   run: npm i
