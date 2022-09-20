@@ -27,6 +27,8 @@ jobs:
 
       - name: ls 2
         run: ls
+        working-directory: profile-resizing
+        
       # - name: set-up
       #   run: npm i
 
