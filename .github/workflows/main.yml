@@ -30,18 +30,21 @@ jobs:
       - name: aws-lambda unzip
         run: unzip aws-lambda.zip
 
-      - name: set-up
-        run: npm i
+      - name: ls
+        run: ls
 
-      - name: aws-lambda zip
-        run: zip -r aws-lambda.zip ./*
+      # - name: set-up
+      #   run: npm i
 
-      - name: aws configure
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
+      # - name: aws-lambda zip
+      #   run: zip -r aws-lambda.zip ./*
 
-      - name: aws-upload
-        run: aws s3 cp "aws-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+      # - name: aws configure
+      #   uses: aws-actions/configure-aws-credentials@v1
+      #   with:
+      #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+      #     aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+      #     aws-region: ${{ secrets.AWS_REGION }}
+
+      # - name: aws-upload
+      #   run: aws s3 cp "aws-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
