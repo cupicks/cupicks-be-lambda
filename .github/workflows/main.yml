@@ -21,14 +21,14 @@ jobs:
       - name: exist-folder-remove
         run: rm -rf profile-resizing
 
-      - name: aws-lambda unzip
-        run: unzip aws-lambda.zip
-
       - name: exist-folder-remove
         run: rm -rf profile-resizing
   
       - name: ls
         run: ls
+
+      - name: aws-lambda unzip
+        run: unzip aws-lambda.zip
 
       - name: set-up
         run: npm i
