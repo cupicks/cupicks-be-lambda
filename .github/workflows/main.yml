@@ -21,6 +21,9 @@ jobs:
       - name: exist-folder-remove
         run: rm -rf profile-resizing
 
+      - name: cd
+        run: cd cupicks-be-lambda
+
       - name: aws-lambda unzip
         run: unzip aws-lambda.zip
 
