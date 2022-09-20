@@ -35,4 +35,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: aws-upload
-        run: aws s3 cp "aws-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+        run: aws s3 cp "profile-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
