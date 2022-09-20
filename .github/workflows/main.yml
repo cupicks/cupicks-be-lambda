@@ -27,6 +27,18 @@ jobs:
       - name: ls
         run: ls
 
+      - name: remove 2
+        run: rm -rf profile.zip
+
+      - name: cd profile
+        run: cd profile-resizing
+      
+      - name: ls 2
+        run: ls
+
+      - name: set up
+        run: npm i
+
       # - name: set-up
       #   run: npm i
 
