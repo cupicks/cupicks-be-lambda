@@ -18,21 +18,6 @@ jobs:
       - name: aws-lambda zip
         run: zip -r aws-lambda.zip ./profile-resizing
 
-      - name: exist-folder-remove
-        run: rm -rf profile-resizing
-
-      - name: exist-folder-remove
-        run: rm -rf profile-resizing
-  
-      - name: ls
-        run: ls
-
-      - name: aws-lambda unzip
-        run: unzip aws-lambda.zip
-
-      - name: cd
-        run: cd ..
-
       - name: ls
         run: ls
 
