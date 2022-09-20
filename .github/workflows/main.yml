@@ -15,13 +15,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: ls
-        run: ls
+      - name: basic zip
+        run: zip -r profile.zip ./profile-resizing
 
-      - name: cd
-        run: cd profile-resizing
-      
-      - name: ls 2
+      - name: remove
+        run: rm -rf profile-resizing
+
+      - name: basic unzip
+        run: unzip profile.zip
+
+      - name: ls
         run: ls
 
       # - name: set-up
