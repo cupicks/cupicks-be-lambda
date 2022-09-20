@@ -36,3 +36,4 @@ jobs:
 
       - name: aws-upload
         run: aws s3 cp "profile-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+        working-directory: profile-resizing
