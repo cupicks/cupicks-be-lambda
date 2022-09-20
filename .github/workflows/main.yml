@@ -15,29 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: basic zip
-        run: zip -r profile.zip ./profile-resizing
+      - name: cd profile 1
+        run: cd profile-resizing
 
-      - name: remove
-        run: rm -rf profile-resizing
-
-      - name: basic unzip
-        run: unzip profile.zip
+      - name: cd profile 2
+        run: cd profile-resizing
 
       - name: ls
         run: ls
-
-      - name: remove 2
-        run: rm -rf profile.zip
-
-      - name: cd profile
-        run: cd profile-resizing
-      
-      - name: ls 2
-        run: ls
-
-      - name: set up
-        run: npm i
 
       # - name: set-up
       #   run: npm i
