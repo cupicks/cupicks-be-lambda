@@ -15,21 +15,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: cd profile 1
-        run: cd profile-resizing
-
-      - name: cd profile 2
-        run: cd profile-resizing
-
-      - name: cd profile 3
-        run: cd profile-resizing
-
       - name: ls
         run: ls
 
-      - name: set up
-        run: npm i
+      - name: cd
+        run: cd profile-resizing
       
+      - name: ls
+        run: ls
       # - name: set-up
       #   run: npm i
 
