@@ -15,10 +15,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: aws-lambda zip
-        run: zip -r aws-lambda.zip ./profile-resizing
-
       - name: ls
+        run: ls
+
+      - name: cd
+        run: cd profile-resizing
+      
+      - name: ls 2
         run: ls
 
       # - name: set-up
