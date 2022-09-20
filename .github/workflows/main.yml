@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./comment-resizing
 
     strategy:
       matrix:
@@ -17,15 +20,15 @@ jobs:
 
       - name: remove exist node_modules
         run: rm -rf node_modules
-        working-directory: profile-resizing
+        # working-directory: comment-resizing
 
       - name: set up
         run: npm i
-        working-directory: profile-resizing
+        # working-directory: comment-resizing
 
-      - name: profile-lambda zip
-        run: zip -r profile-lambda.zip ./*
-        working-directory: profile-resizing
+      - name: comment-lambda zip
+        run: zip -r comment-lambda.zip ./*
+        # working-directory: comment-resizing
       
       - name: aws configure
         uses: aws-actions/configure-aws-credentials@v1
@@ -35,5 +38,5 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: aws-upload
-        run: aws s3 cp "profile-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
-        working-directory: profile-resizing
+        run: aws s3 cp "comment-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+        # working-directory: comment-resizing
