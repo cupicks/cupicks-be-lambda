@@ -30,6 +30,9 @@ jobs:
       - name: aws-lambda unzip
         run: unzip aws-lambda.zip
 
+      - name: aws-lambda unzip
+        run: unzip aws-lambda.zip
+
       - name: ls
         run: ls
 
