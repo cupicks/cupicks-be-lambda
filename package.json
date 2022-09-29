@@ -1,0 +1,23 @@
+{
+  "name": "lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cupicks/cupicks-be-lambda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cupicks/cupicks-be-lambda/issues"
+  },
+  "homepage": "https://github.com/cupicks/cupicks-be-lambda#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1226.0",
+    "sharp": "^0.31.1"
+  }
+}

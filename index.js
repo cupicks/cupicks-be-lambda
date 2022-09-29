@@ -15,19 +15,19 @@ exports.handler = async (event, context, done) => {
         const s3Object = await s3.getObject({ Bucket, Key }).promise();
 
         const resizedImage = await sharp(s3Object.Body)
-        .resize(150, 150, { fit: "inside" })
+        .resize(200, 200, { fit: "inside" })
         .toFormat(format)
         .toBuffer();
 
         await s3.putObject(
         {
             Bucket,
-            Key: `lee-resized/${filename}`,
+            Key: `comment-resized/${filename}`,
             Body: resizedImage,
         }
         ).promise();
 
-        return done(null, `lee-resized/${filename}`);
+        return done(null, `comment-resized/${filename}`);
     } catch (error) {
         return done(error);
     }
