@@ -8,9 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-20.04
-    defaults:
-      # run:
-      #   working-directory: ./comment-resizing
 
     strategy:
       matrix:
