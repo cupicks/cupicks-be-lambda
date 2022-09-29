@@ -1,15 +1,13 @@
-name: Lambda Profile Image Resizing CI
+name: Lambda Profile Image Resizing Function CI/CD
 
 on:
-  push:
-    branches: ["profile"]
+  pull_request:
+    branches:
+      - "profile"
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./comment-resizing
 
     strategy:
       matrix:
@@ -18,21 +16,24 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: remove exist node_modules
+      - name: Remove Exist node_modules
         run: rm -rf node_modules
 
-      - name: set up
-        run: npm i
+      - name: Set Up aws-sdk
+        run: npm i aws-sdk
 
-      - name: comment-lambda zip
-        run: zip -r comment-lambda.zip ./*
+      - name: Set Up sharp
+        run: npm i sharp
+
+      - name: Lambda Function ZIP
+        run: zip -r profile-resized-${{github.event.pull_request.timestamp}}.zip ./index.js ./package.json ./package-lock.json ./node_modules 
       
-      - name: aws configure
+      - name: AWS Configure
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: aws-upload
-        run: aws s3 cp "comment-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+      - name: Automated Upload to S3
+        run: aws s3 cp "profile-resized-${{github.event.pull_request.timestamp}}.zip" s3://${{ secrets.AWS_BUCKET }}
