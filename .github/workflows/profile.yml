@@ -1,38 +1,46 @@
-name: Lambda Profile Image Resizing CI
+name: Lambda-Comment-Automated-Deploy
 
 on:
-  push:
-    branches: ["profile"]
+  pull_request:
+    branches:
+      - "deploy/comment-resizing"
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    defaults:
-      run:
-        working-directory: ./comment-resizing
 
     strategy:
       matrix:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout source code
+        uses: actions/checkout@v1
 
-      - name: remove exist node_modules
+      - name: Remove exist node_modules
         run: rm -rf node_modules
 
-      - name: set up
-        run: npm i
+      - name: Set Up aws-sdk
+        run: npm i aws-sdk
 
-      - name: comment-lambda zip
-        run: zip -r comment-lambda.zip ./*
+      - name: Set Up sharp
+        run: npm i sharp
+
+      - name: Lambda Function ZIP
+        run: zip -r comment-resized-${{github.event.pull_request.timestamp}}.zip ./index.js ./package.json ./package-lock.json ./node_modules 
       
-      - name: aws configure
-        uses: aws-actions/configure-aws-credentials@v1
+      - name: Deploy lambda function
+        uses: appleboy/lambda-action@master
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: aws-upload
-        run: aws s3 cp "comment-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: default-deploy
+          zip_file: ./comment-resized-${{github.event.pull_request.timestamp}}.zip
+          dry_run: true
+          debug: true
+          memory_size: 512
+          timeout: 30
+          handler: index.handler
+          role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
+          runtime: nodejs16.x
