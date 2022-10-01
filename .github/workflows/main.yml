@@ -21,10 +21,10 @@ jobs:
         uses: actions/checkout@v1
 
       - name: npm
-        uses: npm i
+        run: npm i
       
       - name: zip
-        uses: zip -r test.zip ./node_modules
+        run: zip -r test.zip ./node_modules
 
       - name: check
-        uses: ls
+        run: ls
