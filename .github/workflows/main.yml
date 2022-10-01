@@ -44,7 +44,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: default-deploy
-          zip_file: profile-resized.zip
+          zip_file: ./profile-resizing/profile-resized.zip
           dry_run: true
           debug: true
           memory_size: 512
