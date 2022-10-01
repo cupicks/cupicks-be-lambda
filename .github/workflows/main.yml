@@ -30,9 +30,12 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
-        
+
       - name: Lambda function zip
-        run: zip -r profile-resized-${{github.event.pull_request.timestamp}}.zip ./index.js ./package.json ./package-lock.json ./node_modules
+        run: zip -r profile-resized.zip ./index.js ./package.json ./package-lock.json ./node_modules
+
+      - name: ls
+        run: ls
 
       - name: Deploy lambda function
         uses: appleboy/lambda-action@master
@@ -41,7 +44,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: default-deploy
-          zip_file: ./profile-resized-${{github.event.pull_request.timestamp}}.zip
+          zip_file: ./profile-resized.zip
           dry_run: true
           debug: true
           memory_size: 512
