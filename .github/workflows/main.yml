@@ -1,8 +1,9 @@
-name: Lambda CI
+name: Automated-Deploy-Lambda-Function
 
 on:
   push:
-    branches: 'main'
+    branches:
+      - 'main'
 
 jobs:
   build:
@@ -17,7 +18,7 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: checkout source code
+      - name: Checkout source code
         uses: actions/checkout@v3
 
       - name: Cache node_modules
