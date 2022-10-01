@@ -1,0 +1,24 @@
+name: Lambda CI
+
+on:
+  push:
+    branches: ["deploy/profile-resizing", deploy/comment-resizing]
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    if: github.ref_name == "deploy/profile-resizing"
+    defaults:
+      run:
+        working-directory: ./profile-resizing
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v1
+
+      - name: test
+        run: echo "hello!!"
