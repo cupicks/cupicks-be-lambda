@@ -3,11 +3,11 @@ name: Automated-Deploy-Lambda-Function
 on:
   push:
     branches:
-      - 'main'
+      - 'test'
 jobs:
-  job1:
-    build:
-      runs-on: ubuntu-20.04
+  build:
+    runs-on: ubuntu-20.04
+    job1:
       if: ${{ contains(github.event.head_commit.message, 'profile') }}
       defaults:
         run:
@@ -53,9 +53,7 @@ jobs:
             handler: index.handler
             role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
             runtime: nodejs16.x
-  job2:
-    build:
-      runs-on: ubuntu-20.04
+    job2:
       if: ${{ contains(github.event.head_commit.message, 'comment') }}
       defaults:
         run:
