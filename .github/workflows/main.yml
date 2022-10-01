@@ -30,10 +30,7 @@ jobs:
       - name: Install dependencies
         if: steps.cache.outputs.cache-hit != 'true'
         run: npm ci
-
-      - name: Set up sharp
-        run: npm ci sharp
-
+        
       - name: Lambda function zip
         run: zip -r profile-resized-${{github.event.pull_request.timestamp}}.zip ./index.js ./package.json ./package-lock.json ./node_modules
 
