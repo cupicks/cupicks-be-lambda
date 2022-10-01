@@ -2,7 +2,7 @@ name: Lambda CI
 
 on:
   push:
-    branches: ["deploy/profile-resizing", deploy/comment-resizing]
+    branches: ["feature/profile-resizing", feature/comment-resizing]
 
 jobs:
   build:
