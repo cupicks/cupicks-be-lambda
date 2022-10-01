@@ -25,5 +25,5 @@ jobs:
       - name: zip
         run: zip -r test.zip ./node_modules
 
-      - name: check
+      - name: ls
         run: ls
