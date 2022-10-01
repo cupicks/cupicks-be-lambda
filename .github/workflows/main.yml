@@ -54,7 +54,7 @@ jobs:
           role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
           runtime: nodejs16.x
 
-jobs:
+jobs 2:
   build:
     runs-on: ubuntu-20.04
     if: ${{ contains(github.event.head_commit.message, 'comment') }}
