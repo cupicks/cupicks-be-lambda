@@ -20,5 +20,11 @@ jobs:
       - name: checkout source code
         uses: actions/checkout@v1
 
-      - name: test
-        run: echo "hello!!"
+      - name: npm
+        uses: npm i
+      
+      - name: zip
+        uses: zip -r test.zip ./node_modules
+
+      - name: check
+        uses: ls
