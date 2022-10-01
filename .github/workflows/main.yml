@@ -15,10 +15,10 @@ jobs:
 
       steps:
         - name: zip
-          uses: zip -r profile.zip ./index.js
+          run: zip -r profile.zip ./index.js
       
         - name: ls
-          uses: ls
+          run: ls
   job2:
     build:
       runs-on: ubuntu-20.04
@@ -29,7 +29,7 @@ jobs:
 
       steps:
         - name: zip
-          uses: zip -r comment.zip ./index.js
+          run: zip -r comment.zip ./index.js
       
         - name: ls
-          uses: ls
+          run: ls
