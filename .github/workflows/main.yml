@@ -17,8 +17,7 @@ jobs:
         node-version: [16.x]
 
     steps:
-      - name: checkout source code
-        uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: npm
         run: npm i
