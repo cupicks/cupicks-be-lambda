@@ -1,13 +1,13 @@
 name: Lambda CI
 
 on:
-  push:
-    branches: ["deploy/profile-resizing", deploy/comment-resizing]
+  pull_request:
+    branches: ["feature/profile-resizing", "feature/comment-resizing"]
 
 jobs:
   build:
     runs-on: ubuntu-20.04
-    if: github.ref_name == "deploy/profile-resizing"
+    if: github.ref_name == "feature/profile-resizing"
     defaults:
       run:
         working-directory: ./profile-resizing
