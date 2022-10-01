@@ -19,11 +19,27 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: npm
-        run: npm i
-      
-      - name: zip
-        run: zip -r test.zip ./node_modules
+      - name: Set up aws-sdk
+        run: npm ci aws-sdk
+    
+      - name: Set up sharp
+        run: npm ci sharp
 
-      - name: ls
-        run: ls
+      - name: Lambda function zip
+        run: zip -r profile-resized-${{github.event.pull_request.timestamp}}.zip 
+
+      - name: Deploy lambda function
+      uses: appleboy/lambda-action@master
+      with:
+        aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+        aws_region: ${{ secrets.AWS_REGION }}
+        function_name: default-deploy
+        zip_file: ./profile-resized-${{github.event.pull_request.timestamp}}.zip
+        dry_run: true
+        debug: true
+        memory_size: 512
+        timeout: 30
+        handler: index.handler
+        role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
+        runtime: nodejs16.x
