@@ -53,6 +53,7 @@ jobs:
             handler: index.handler
             role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
             runtime: nodejs16.x
+
   job2:
     build:
       runs-on: ubuntu-20.04
