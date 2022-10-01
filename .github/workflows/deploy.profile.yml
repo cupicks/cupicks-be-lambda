@@ -1,0 +1,46 @@
+name: Lambda-Profile-Automated-Deploy
+
+on:
+  pull_request:
+    branches:
+      - "deploy/profile-resizing"
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v1
+
+      - name: Remove exist node_modules
+        run: rm -rf node_modules
+
+      - name: Set Up aws-sdk
+        run: npm i aws-sdk
+
+      - name: Set Up sharp
+        run: npm i sharp
+
+      - name: Lambda Function ZIP
+        run: zip -r profile-resized-${{github.event.pull_request.timestamp}}.zip ./index.js ./package.json ./package-lock.json ./node_modules 
+      
+      - name: Deploy lambda function
+        uses: appleboy/lambda-action@master
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          function_name: default-deploy
+          zip_file: ./profile-resized-${{github.event.pull_request.timestamp}}.zip
+          dry_run: true
+          debug: true
+          memory_size: 512
+          timeout: 30
+          handler: index.handler
+          role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
+          runtime: nodejs16.x
