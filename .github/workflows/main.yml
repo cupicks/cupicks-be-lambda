@@ -5,17 +5,19 @@ on:
     branches:
       - 'main'
 jobs:
-  job:
-    build:
-      runs-on: ubuntu-20.04
-      if: ${{ contains(github.event.head_commit.message, 'profile') }}
-      defaults:
-        run:
-          working-directory: ./profile-resizing
+  build:
+    runs-on: ubuntu-20.04
+    if: ${{ contains(github.event.head_commit.message, 'comment') }}
+    defaults:
+      run:
+        working-directory: ./comment-resizing
 
-      steps:
-        - name: zip
-          run: zip -r profile.zip ./index.js
-      
-        - name: ls
-          run: ls
+    steps:
+      - name: checkout source code
+        uses: actions/checkout@v1
+
+      - name: zip
+        run: zip -r comment.zip ./index.js
+    
+      - name: ls
+        run: ls
