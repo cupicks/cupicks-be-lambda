@@ -3,7 +3,7 @@ name: Automated-Deploy-Lambda-Function
 on:
   push:
     branches:
-      - 'main'
+      - 'test'
 jobs:
   build:
     runs-on: ubuntu-20.04
