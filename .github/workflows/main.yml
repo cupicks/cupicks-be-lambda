@@ -2,37 +2,23 @@ name: Lambda CI
 
 on:
   push:
-    branches: ['test']
+    branches: ["deploy/profile-resizing", deploy/comment-resizing]
 
 jobs:
   build:
     runs-on: ubuntu-20.04
+    if: github.ref_name == "deploy/profile-resizing"
     defaults:
       run:
-        working-directory: ./comment-resizing
+        working-directory: ./profile-resizing
 
     strategy:
       matrix:
         node-version: [16.x]
 
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout source code
+        uses: actions/checkout@v1
 
-      - name: remove exist node_modules
-        run: rm -rf node_modules
-
-      - name: set up
-        run: npm i
-
-      - name: comment-lambda zip
-        run: zip -r comment-lambda.zip ./*
-      
-      - name: aws configure
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: aws-upload
-        run: aws s3 cp "comment-lambda.zip" s3://${{ secrets.AWS_BUCKET }}
+      - name: test
+        run: echo "hello!!"
