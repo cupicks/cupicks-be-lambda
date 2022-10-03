@@ -16,6 +16,8 @@ exports.handler = async (event, context, done) => {
 
         const { width } = await sharp(s3Object.Body).metadata();
 
+        // const size = 
+
         if (width < 150) {
             await s3.putObject(
                 {
