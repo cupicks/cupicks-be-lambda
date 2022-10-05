@@ -16,31 +16,58 @@ exports.handler = async (event, context, done) => {
 
         const { width } = await sharp(s3Object.Body).metadata();
 
-        if (width < 150) {
-            await s3.putObject(
+        if (format === "png") { // PNG
+            if (width < 150) {
+                return await s3.putObject(
+                    {
+                        Bucket,
+                        Key: `lee-resized/${filename}`,
+                        Body: s3Object.Body,
+                    }
+                ).promise();
+            } else {
+                const pngResized = await sharp(s3Object.Body)
+                .resize(150, 150, { fit: "inside"})
+                .png({ palette: true })
+                .toBuffer();
+
+                return await s3.putObject(
+                    {
+                        Bucket,
+                        Key: `lee-resized/${filename}`,
+                        Body: pngResized,
+                    }
+                ).promise();
+            }
+        }
+
+        if (width < 150) { // JPEG
+            return await s3.putObject(
                 {
                     Bucket,
                     Key: `lee-resized/${filename}`,
-                    Body: resizedImage,
+                    Body: s3Object.Body,
                 }
                 ).promise();
         } else {
-            const resizedImage = await sharp(s3Object.Body)
+            const jpegResized = await sharp(s3Object.Body)
             .resize(150, 150, { fit: "inside" })
             .toFormat(format)
             .toBuffer();
 
-            await s3.putObject(
+            return await s3.putObject(
                 {
                     Bucket,
                     Key: `lee-resized/${filename}`,
-                    Body: resizedImage,
+                    Body: jpegResized,
                 }
                 ).promise();
         }
 
+    } catch (err) {
+        console.log(err);
+        return done(err);
+    } finally {
         return done(null, `lee-resized/${filename}`);
-    } catch (error) {
-        return done(error);
     }
 };
