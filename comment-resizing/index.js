@@ -40,7 +40,7 @@ exports.handler = async (event, context, done) => {
         }
 
         return done(null, `comment-resized/${filename}`);
-    } catch (error) {
-        return done(error);
+    } catch (err) {
+        return done(err);
     }
 };
