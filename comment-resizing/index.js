@@ -39,7 +39,7 @@ exports.handler = async (event, context, done) => {
                 ).promise();
         }
 
-        return done(null, `comment-resized/${filename}`);
+        done(null, `comment-resized/${filename}`);
     } catch (err) {
         return done(err);
     }
