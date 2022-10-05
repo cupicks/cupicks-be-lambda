@@ -55,7 +55,7 @@ exports.handler = async (event, context, done) => {
             .toFormat(format)
             .toBuffer();
 
-            await s3.putObject(
+            return await s3.putObject(
                 {
                     Bucket,
                     Key: `lee-resized/${filename}`,
