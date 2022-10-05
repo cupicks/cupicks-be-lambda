@@ -3,14 +3,14 @@ name: Automated-Deploy-Lambda-Function
 on:
   push:
     branches:
-      - 'main'
+      - 'hotfix'
 jobs:
-  profile:
+  hotfix:
     runs-on: ubuntu-20.04
-    if: ${{ contains(github.event.head_commit.message, 'profile') }}
+    if: ${{ contains(github.event.head_commit.message, 'hotfix') }}
     defaults:
       run:
-        working-directory: ./profile-resizing
+        working-directory: ./hotfix
 
     strategy:
       matrix:
@@ -32,7 +32,7 @@ jobs:
         run: npm ci
 
       - name: Lambda function zip
-        run: zip -r profile-resized.zip ./index.js ./package.json ./package-lock.json ./node_modules
+        run: zip -r hotfix-resized.zip ./index.js ./package.json ./package-lock.json ./node_modules
 
       - name: Deploy lambda function
         uses: appleboy/lambda-action@master
@@ -40,8 +40,8 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
-          function_name: ${{ secrets.AWS_LAMBDA_PROFILE_FUNCTION }}
-          zip_file: ./profile-resizing/profile-resized.zip
+          function_name: default-deploy
+          zip_file: ./hotfix/hotfix-resized.zip
           dry_run: true
           debug: true
           memory_size: 512
