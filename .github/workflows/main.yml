@@ -91,5 +91,4 @@ jobs:
           memory_size: 512
           timeout: 30
           handler: index.handler
-          role: ${{ secrets.LAMBDA_FUNCTION_ROLE }}
           runtime: nodejs16.x
