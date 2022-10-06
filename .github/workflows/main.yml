@@ -46,7 +46,7 @@ jobs:
           debug: true
           memory_size: 512
           timeout: 30
-          role: arn:aws:lambda:ap-northeast-2:636928289631:function:deploy-etc
+          role: arn:aws:lambda:ap-northeast-2:636928289631:deploy-etc
           handler: index.handler
           runtime: nodejs16.x
 
