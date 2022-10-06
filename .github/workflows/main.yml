@@ -41,6 +41,7 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: default-test
+          role: arn:aws:lambda:ap-northeast-2:636928289631:function:default-test
           zip_file: ./hotfix/hotfix-resized.zip
           dry_run: true
           debug: true
