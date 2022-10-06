@@ -41,7 +41,6 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: default-test
-          role: arn:aws:iam::636928289631:role/service-role/default-test-role-5cunw6dq
           zip_file: ./hotfix/hotfix-resized.zip
           dry_run: true
           debug: true
