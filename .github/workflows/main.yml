@@ -40,12 +40,12 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
-          function_name: ${{ secrets.AWS_LAMBDA_PROFILE_FUNCTION }}
+          function_name: default-test
           zip_file: ./hotfix/hotfix-resized.zip
           dry_run: true
           debug: true
           memory_size: 512
-          role: arn:aws:lambda:ap-northeast-2:636928289631:function:default-deploy
+          role: arn:aws:lambda:ap-northeast-2:636928289631:function:default-test
           timeout: 30
           handler: index.handler
           runtime: nodejs16.x
