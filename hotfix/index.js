@@ -17,48 +17,48 @@ exports.handler = async (event, context, done) => {
         const { width } = await sharp(s3Object.Body).metadata();
 
         if (format === "png") { // PNG
-            if (width < 600) {
+            if (width < 150) {
                 return await s3.putObject(
                     {
                         Bucket,
-                        Key: `comment-resized/${filename}`,
+                        Key: `lee-resized/${filename}`,
                         Body: s3Object.Body,
                     }
                 ).promise();
             } else {
                 const pngResized = await sharp(s3Object.Body)
-                .resize(600, 600, { fit: "inside"})
+                .resize(150, 150, { fit: "inside"})
                 .png({ palette: true })
                 .toBuffer();
 
                 return await s3.putObject(
                     {
                         Bucket,
-                        Key: `comment-resized/${filename}`,
+                        Key: `lee-resized/${filename}`,
                         Body: pngResized,
                     }
                 ).promise();
             }
         }
 
-        if (width < 600) { // JPEG
+        if (width < 150) { // JPEG
             return await s3.putObject(
                 {
                     Bucket,
-                    Key: `comment-resized/${filename}`,
+                    Key: `lee-resized/${filename}`,
                     Body: s3Object.Body,
                 }
                 ).promise();
         } else {
             const jpegResized = await sharp(s3Object.Body)
-            .resize(600, 600, { fit: "inside" })
+            .resize(150, 150, { fit: "inside" })
             .toFormat(format)
             .toBuffer();
 
             return await s3.putObject(
                 {
                     Bucket,
-                    Key: `comment-resized/${filename}`,
+                    Key: `lee-resized/${filename}`,
                     Body: jpegResized,
                 }
                 ).promise();
@@ -68,6 +68,6 @@ exports.handler = async (event, context, done) => {
         console.log(err);
         return done(err);
     } finally {
-        return done(null, `comment-resized/${filename}`);
+        return done(null, `lee-resized/${filename}`);
     }
 };
