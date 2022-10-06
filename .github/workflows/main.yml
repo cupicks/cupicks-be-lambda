@@ -43,7 +43,7 @@ jobs:
           function_name: default-test
           zip_file: ./hotfix/hotfix-resized.zip
           dry_run: true
-          debug: false
+          debug: true
           memory_size: 512
           timeout: 30
           handler: index.handler
