@@ -35,7 +35,7 @@ jobs:
         run: zip -r hotfix-resized.zip ./index.js ./package.json ./package-lock.json ./node_modules
 
       - name: Deploy lambda function
-        uses: appleboy/lambda-action@v0.1.5
+        uses: appleboy/lambda-action@master
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_KEY }}
@@ -45,7 +45,7 @@ jobs:
           dry_run: true
           debug: true
           memory_size: 512
-          role: arn:aws:iam::636928289631:role/service-role/default-deploy-role-5jy2h7si
+          role: arn:aws:iam::636928289631:role/service-role
           timeout: 30
           handler: index.handler
           runtime: nodejs16.x
