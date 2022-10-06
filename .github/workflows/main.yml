@@ -45,7 +45,7 @@ jobs:
           dry_run: true
           debug: true
           memory_size: 512
-          role: arn:aws:iam::636928289631:role/service-role/default-deploy-role-5jy2h7si
+          # role: arn:aws:iam::636928289631:role/service-role/default-deploy-role-5jy2h7si
           timeout: 30
           handler: index.handler
           runtime: nodejs16.x
